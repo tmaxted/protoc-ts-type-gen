@@ -1,7 +1,20 @@
 import {parse} from "querystring";
-import {FileDescriptorProto} from "google-protobuf/google/protobuf/descriptor_pb";
+import { FileDescriptorProto, FieldDescriptorProto } from "google-protobuf/google/protobuf/descriptor_pb";
 import {ExportEnumEntry, ExportMessageEntry} from "./ExportMap";
 import {ServiceParameter, ModeParameter} from "./parameters";
+import { MESSAGE_TYPE } from "./ts/FieldTypes";
+
+export function parseTypeAppend(key: string, type: FieldDescriptorProto.Type) {
+  if (type === MESSAGE_TYPE) {
+    if (key === 'google_protobuf_any_pb.Any') {
+      return '.AsObject';
+    } else {
+      return ".Object";
+    }
+  } else {
+    return "";
+  }
+}
 
 export function filePathToPseudoNamespace(filePath: string): string {
   return filePath.replace(".proto", "").replace(/\//g, "_").replace(/\./g, "_").replace(/\-/g, "_") + "_pb";

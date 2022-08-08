@@ -1,7 +1,7 @@
 {
-  "name": "ts-protoc-gen",
-  "version": "0.15.1-pre",
-  "description": "Protoc Plugin for TypeScript Declarations and Service Definitions",
+  "name": "protoc-ts-type-gen",
+  "version": "0.1.0",
+  "description": "Protoc Plugin for generating TypeScript Declarations from Protocol Buffer schema.",
   "scripts": {
     "lint": "tslint -c tslint.json \"test/**/*.ts\" \"src/**/*.ts\"",
     "lint:fix": "npm run lint -- --fix",
@@ -15,9 +15,9 @@
     "prepublishOnly": "npm run build"
   },
   "bin": {
-    "protoc-gen-ts": "bin/protoc-gen-ts"
+    "classless-protoc-gen-ts": "bin/classless-protoc-gen-ts"
   },
-  "repository": "https://github.com/improbable-eng/ts-protoc-gen",
+  "repository": "https://github.com/tmaxted/classless-ts-protoc-gen",
   "keywords": [
     "protobuf",
     "protoc",
@@ -27,7 +27,7 @@
     "service",
     "proto3"
   ],
-  "author": "Improbable",
+  "author": "tmaxted",
   "license": "Apache-2.0",
   "dependencies": {
     "google-protobuf": "^3.15.5"
