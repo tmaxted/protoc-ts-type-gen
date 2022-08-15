@@ -55,7 +55,7 @@ export function printMessage(fileName: string, exportMap: ExportMap, messageDesc
         existing.push(field);
       }
     }
-    const fieldName = field.getName() || throwError("Missing field name");
+    const fieldName = field.getJsonName() || field.getName() || throwError("Field has no name");
     const snakeCaseName = stripPrefix(fieldName.toLowerCase(), "_");
     const camelCaseName = snakeToCamel(snakeCaseName);
     const type = field.getType() || throwError("Missing field type");

@@ -1,6 +1,6 @@
 {
   "name": "protoc-ts-type-gen",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Protoc Plugin for generating TypeScript Declarations from Protocol Buffer schema.",
   "scripts": {
     "lint": "tslint -c tslint.json \"test/**/*.ts\" \"src/**/*.ts\"",
