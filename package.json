@@ -18,6 +18,9 @@
     "protoc-ts-type-gen": "bin/protoc-ts-type-gen"
   },
   "repository": "https://github.com/tmaxted/protoc-ts-type-gen",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "keywords": [
     "protobuf",
     "protoc",
