@@ -2,8 +2,6 @@ import {
   filePathToPseudoNamespace,
   normaliseFieldObjectName,
   parseTypeAppend,
-  snakeToCamel,
-  stripPrefix,
   throwError,
   withinNamespaceFromExportEntry
 } from "../util";
@@ -56,8 +54,6 @@ export function printMessage(fileName: string, exportMap: ExportMap, messageDesc
       }
     }
     const fieldName = field.getJsonName() || field.getName() || throwError("Field has no name");
-    const snakeCaseName = stripPrefix(fieldName.toLowerCase(), "_");
-    const camelCaseName = snakeToCamel(snakeCaseName);
     const type = field.getType() || throwError("Missing field type");
 
     let exportType;
@@ -82,7 +78,7 @@ export function printMessage(fileName: string, exportMap: ExportMap, messageDesc
         if (valueType === ENUM_TYPE) {
           valueTypeName = `${valueTypeName}[keyof ${valueTypeName}]`;
         }
-        toObjectType.printIndentedLn(`${camelCaseName}Map?: Array<[${keyTypeName}${parseTypeAppend(keyTypeName, keyType)}, ${valueTypeName}${parseTypeAppend(valueTypeName, valueType)}]>,`);
+        toObjectType.printIndentedLn(`${fieldName}Map?: Array<[${keyTypeName}${parseTypeAppend(keyTypeName, keyType)}, ${valueTypeName}${parseTypeAppend(valueTypeName, valueType)}]>,`);
         return;
       }
       const withinNamespace = withinNamespaceFromExportEntry(fullTypeName, fieldMessageType);
@@ -126,15 +122,15 @@ export function printMessage(fileName: string, exportMap: ExportMap, messageDesc
     if (field.getLabel() === FieldDescriptorProto.Label.LABEL_REPEATED) {
       // is repeated
       if (type === BYTES_TYPE) {
-        toObjectType.printIndentedLn(`${camelCaseName}?: Array<Uint8Array | string>,`);
+        toObjectType.printIndentedLn(`${fieldName}?: Array<Uint8Array | string>,`);
       } else {
-        toObjectType.printIndentedLn(`${camelCaseName}?: Array<${exportType}${parseTypeAppend(exportType, type)}>,`);
+        toObjectType.printIndentedLn(`${fieldName}?: Array<${exportType}${parseTypeAppend(exportType, type)}>,`);
       }
     } else {
       if (type === BYTES_TYPE) {
-        toObjectType.printIndentedLn(`${camelCaseName}?: Uint8Array | string,`);
+        toObjectType.printIndentedLn(`${fieldName}?: Uint8Array | string,`);
       } else {
-        const fieldObjectName = normaliseFieldObjectName(camelCaseName);
+        const fieldObjectName = normaliseFieldObjectName(fieldName);
         let fieldObjectType = exportType;
         toObjectType.printIndentedLn(`${fieldObjectName}?: ${fieldObjectType}${parseTypeAppend(fieldObjectType, type)},`);
       }
