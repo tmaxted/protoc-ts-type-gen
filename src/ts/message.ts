@@ -75,9 +75,9 @@ export function printMessage(fileName: string, exportMap: ExportMap, messageDesc
         if (valueType === BYTES_TYPE) {
           valueTypeName = "Uint8Array | string";
         }
-        if (valueType === ENUM_TYPE) {
-          valueTypeName = `${valueTypeName}[keyof ${valueTypeName}]`;
-        }
+        // if (valueType === ENUM_TYPE) {
+        //   valueTypeName = `${valueTypeName}[keyof ${valueTypeName}]`;
+        // }
         toObjectType.printIndentedLn(`${fieldName}Map?: Array<[${keyTypeName}${parseTypeAppend(keyTypeName, keyType)}, ${valueTypeName}${parseTypeAppend(valueTypeName, valueType)}]>,`);
         return;
       }
@@ -100,7 +100,7 @@ export function printMessage(fileName: string, exportMap: ExportMap, messageDesc
       } else {
         exportType = filePathToPseudoNamespace(fieldEnumType.fileName) + "." + withinNamespace;
       }
-      exportType = `${exportType}Map[keyof ${exportType}Map]`;
+      // exportType = `${exportType}Map[keyof ${exportType}Map]`;
     } else {
       const fieldOptions = field.getOptions();
       if (fieldOptions && fieldOptions.hasJstype()) {

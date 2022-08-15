@@ -51,7 +51,7 @@ export function getFieldType(type: FieldDescriptorProto.Type, typeName: string |
     }
     const withinNamespace = withinNamespaceFromExportEntry(typeName, fromExport);
     if (fromExport.fileName === currentFileName) {
-      return `${withinNamespace}Map`;
+      return `${withinNamespace}`;
     } else {
       return filePathToPseudoNamespace(fromExport.fileName) + "." + withinNamespace;
     }
