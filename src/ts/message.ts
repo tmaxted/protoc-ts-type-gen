@@ -100,7 +100,6 @@ export function printMessage(fileName: string, exportMap: ExportMap, messageDesc
       } else {
         exportType = filePathToPseudoNamespace(fieldEnumType.fileName) + "." + withinNamespace;
       }
-      exportType = `${exportType}[keyof ${exportType}]`;
     } else {
       const fieldOptions = field.getOptions();
       if (fieldOptions && fieldOptions.hasJstype()) {
@@ -117,6 +116,11 @@ export function printMessage(fileName: string, exportMap: ExportMap, messageDesc
       } else {
         exportType = getTypeName(type);
       }
+    }
+
+    // protobuf.Any expects binary value but we are using unmarshalled json strings.
+    if (exportType === 'google_protobuf_any_pb.Any') {
+      exportType = 'any';
     }
 
     if (field.getLabel() === FieldDescriptorProto.Label.LABEL_REPEATED) {

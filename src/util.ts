@@ -6,8 +6,8 @@ import { MESSAGE_TYPE } from "./ts/FieldTypes";
 
 export function parseTypeAppend(key: string, type: FieldDescriptorProto.Type) {
   if (type === MESSAGE_TYPE) {
-    if (key === 'google_protobuf_any_pb.Any') {
-      return '.AsObject';
+    if (key === 'google_protobuf_any_pb.Any' || key === 'any') {
+      return '';
     } else {
       return ".Object";
     }
