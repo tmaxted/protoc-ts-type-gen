@@ -4,7 +4,6 @@ import { throwError } from "../util";
 
 export function printEnum(enumDescriptor: EnumDescriptorProto, indentLevel: number) {
   const printer = new Printer(indentLevel);
-  // const enumInterfaceName = `${enumDescriptor.getName()}Map`;
   const enumInterfaceName = `${enumDescriptor.getName()}`;
   printer.printEmptyLn();
   printer.printLn(`export enum ${enumInterfaceName} {`);

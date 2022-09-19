@@ -23,6 +23,12 @@ export function printFileDescriptorTSD(fileDescriptor: FileDescriptorProto, expo
 
   fileDescriptor.getDependencyList().forEach((dependency: string) => {
     const pseudoNamespace = filePathToPseudoNamespace(dependency);
+    
+    // don't import google pb any as we are replacing with ts any
+    if (pseudoNamespace === "google_protobuf_any_pb") {
+      return;
+    }
+
     if (dependency in WellKnownTypesMap) {
       printer.printLn(`import * as ${pseudoNamespace} from "${WellKnownTypesMap[dependency]}";`);
     } else {
