@@ -1,6 +1,6 @@
 # protoc-ts-type-gen
 
-> Protoc Plugin for generating TypeScript Declarations from Protocol Buffer schema.
+> An **EXTREMELY OPINIONATED**  Protoc Plugin for generating TypeScript Declarations from Protocol Buffer schema.
 
 This repository contains a [protoc](https://github.com/google/protobuf) plugin that generates TypeScript declarations
 (`.d.ts` files) that match the JavaScript output of `protoc --js_out=import_style=commonjs,binary`.
