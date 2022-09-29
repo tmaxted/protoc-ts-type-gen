@@ -9,7 +9,7 @@ export function printEnum(enumDescriptor: EnumDescriptorProto, indentLevel: numb
   printer.printLn(`export enum ${enumInterfaceName} {`);
   enumDescriptor.getValueList().forEach(value => {
     const valueName = value.getName() || throwError("Missing value name");
-    printer.printIndentedLn(`${valueName.toUpperCase()} = "${valueName.toUpperCase()}",`);
+    printer.printIndentedLn(`${valueName.toUpperCase()} = "${valueName}",`);
   });
   printer.printLn(`}`);
   return printer.getOutput();
