@@ -78,7 +78,7 @@ export function printMessage(fileName: string, exportMap: ExportMap, messageDesc
         if (valueType === ENUM_TYPE) {
           valueTypeName = `${valueTypeName}[keyof ${valueTypeName}]`;
         }
-        toObjectType.printIndentedLn(`${fieldName}Map?: Array<[${keyTypeName}${parseTypeAppend(keyTypeName, keyType)}, ${valueTypeName}${parseTypeAppend(valueTypeName, valueType)}]>,`);
+        toObjectType.printIndentedLn(`${fieldName}?: Array<[${keyTypeName}${parseTypeAppend(keyTypeName, keyType)}, ${valueTypeName}${parseTypeAppend(valueTypeName, valueType)}]>,`);
         return;
       }
       const withinNamespace = withinNamespaceFromExportEntry(fullTypeName, fieldMessageType);
